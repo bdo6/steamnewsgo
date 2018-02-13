@@ -1,0 +1,29 @@
+<!HTML DOCTYPE>
+<html>
+<head>
+<title>{{page_title}}</title>
+</head>
+<body>
+<h1>{{page_title}}</h1>
+<h2> steamid: {{displayid}} </h2>
+<br>
+{% for game in gaming_news %}
+    <h3>
+        <img src={{ gameicons[game] }} >
+        {{game}}
+    </h3>
+    <div>
+        {% for news in gaming_news[game] %}
+            <div>
+                <img src={{ news['urlToImage']}} width="100" > <br/>
+                {{ news['author']}}
+                <div><a href={{ news['url'] }} target="_blank"> {{ news['title']}}</a></div>
+            </div>
+        {% endfor %}
+    </div>
+    <hr/>
+
+{% endfor %}
+
+</body>
+</html>
