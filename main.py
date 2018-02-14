@@ -57,7 +57,7 @@ class GreetResponseHandlr(webapp2.RequestHandler):
 
         vals={} #dictionary
         tag = self.request.get('tag')
-        vals['page_title']="Steam Username Search Results: " + tag
+        vals['page_title']="Showing The Top 5 Games and News For: " + tag
                   
         if tag:
             tag = self.request.get('tag')
@@ -92,7 +92,7 @@ class GreetResponseHandlr(webapp2.RequestHandler):
 
             vals["displayid"] = steamid # When load greet response, it will have steam id
 
-            def getSteamGames(steamid):  #Function
+            def getSteamGames(steamid):  #Function # There is no data we are just trying to get the list of games
                 APIKEY = SteamAPIkey
                 # What we are trying to do: http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=FFF27E8F084794A0696BEE665C659A7A&steamid=76561197960434622&format=json
                 params = {'format': 'json', 'key': APIKEY, 'steamid': steamid, 'include_appinfo': 1, 'include_played_free_games': 1 } # 1 is as simple number represetation of true. 0 is false in steam
@@ -156,10 +156,16 @@ class GreetResponseHandlr(webapp2.RequestHandler):
 
                 gamingdictionary = {}           #Store the games (key is the name of the game) and its news (the news will be a list as a value)
                 gameicons = {}
+                topnames = []
 
                 for game in topgames:
                     gamename = game["name"] # Accessing a dictionary or list. Curly braces are only for new dictionaries
-                    gameicons[gamename] = 'http://media.steampowered.com/steamcommunity/public/images/apps/%s/%s.jpg' % (game["appid"], game["img_logo_url"])
+                    topnames.append(gamename)  # Append is a function where it adds something to the end of the list. This creates a list
+                    # of the games in order of # hrs played
+                    gameicons[gamename] = 'http://media.steampowered.com/steamcommunity/public/images/apps/%s/%s.jpg' % (game["appid"], game["img_logo_url"]) # Now that we have the list of games we can
+                    #plug in additional features like the logo's of the games
+                    # Creates a url for the icon of each game and puts it into the gameicon's dictionary with key of the name. The name is the game name (not the info of each game). The info is what we used to
+                    #get the data
                     gamenews = getGamingNews(gamename) #Accessing function
                     game["news"] = gamenews["articles"] #added so that we get news and attached to dictionary in top games
                     gamingdictionary[gamename] = gamenews["articles"] # We are storing the game and its news as a key value pair rather than having to start over each time with the for loop
@@ -169,8 +175,9 @@ class GreetResponseHandlr(webapp2.RequestHandler):
                     # Ex: Getting metal gear survive news that mention 7 days to die due to them being both zombie survival
                     #We needed to attach all news to each game rather than overwriting it
                # logging.info(pretty(gamingdictionary)) # This was to test gaming dictionary. quotes not for variables
-                logging.info(pretty(topgames))
-                vals['gaming_news'] = gamingdictionary
+                # logging.info(pretty(topnames))
+                vals['top_names'] = topnames
+                vals['gaming_news'] = gamingdictionary # vals passes it to html
                 vals['gameicons'] = gameicons
             else:
                 return

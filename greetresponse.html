@@ -1,28 +1,35 @@
 <!HTML DOCTYPE>
 <html>
+<link type="text/css" rel="stylesheet" href="/assets/styles.css">
 <head>
 <title>{{page_title}}</title>
 </head>
 <body>
-<h1>{{page_title}}</h1>
-<h2> steamid: {{displayid}} </h2>
+<div id="searchResults"><h1>{{page_title}}</h1></div>
+<div id="steamidnumber"><h2> Steamid: {{displayid}} </h2></div>
+<div id="startover"><h2><a href="/">Go Back</a></h2></div>
 <br>
-{% for game in gaming_news %}
-    <h3>
+<hr>
+{% for game in top_names %}
+   <div class="gamenewsblock">
         <img src={{ gameicons[game] }} >
-        {{game}}
-    </h3>
-    <div>
+        <br>
+       <h2>{{game}}</h2>
+    <br>
+    <div class="newsblock">
         {% for news in gaming_news[game] %}
             <div>
                 <img src={{ news['urlToImage']}} width="100" > <br/>
                 {{ news['author']}}
-                <div><a href={{ news['url'] }} target="_blank"> {{ news['title']}}</a></div>
+                <div><h3><a href={{ news['url'] }} target="_blank"> {{ news['title']}}</a></h3></div>
             </div>
+            <br>
+            <br>
+            <br>
         {% endfor %}
+        <hr/>
     </div>
-    <hr/>
-
+   </div>
 {% endfor %}
 
 </body>

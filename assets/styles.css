@@ -1,0 +1,38 @@
+body {
+    background-color: #184660;
+    color: white;
+}
+#imagespan {
+    display: inline-block;
+    padding-bottom: 0 ;
+}
+#searchname {
+    margin-top: 10vh;
+    text-align: center;
+}
+#searchform {
+    width:60vh;
+}
+#instructions {
+    width:60vh;
+    margin: 0 auto;
+}
+.newsblock {
+    margin: 0 auto;
+    text-align: center;
+}
+.gamenewsblock {
+    clear: both;
+}
+a:link, a:visited {
+    color: white;
+    font-weight: 900;
+}
+#searchresults {
+    text-align: center;
+    margin: 0 auto;
+}
+#steamidnumber {
+    text-align: center;
+    margin: 0 auto;
+}

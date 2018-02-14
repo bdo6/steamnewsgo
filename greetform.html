@@ -1,16 +1,27 @@
 <!HTML DOCTYPE>
 <html>
+<link type="text/css" rel="stylesheet" href="/assets/styles.css">
 <head>
 <title>{{page_title}}</title>
 </head>
 <body>
-<h1>Steam Username Search</h1>
+<div id="searchname"><h1>Steam News On the Go</h1>
 
 <br>
-<h2>Enter a search tag below!</h2>
+
+<span id="imagespan"><img src="http://markinternational.info/data/out/625/224432713-steam-logo.png" width="100%"></span>
+<div id="searchbar"><h2>Please enter your steam id or vanity url below!</h2>
 <form action="steamresponse" method="post">
-	<label for="tag">Please enter a search tag:</label>
-	<input type="text" id="tag" name="tag"/>
-	<input type="submit" value="Go" name"gobtn"/></form>
+	<input id="searchform" type="text" id="tag" name="tag"/>
+	<input type="submit" value="Go" name"gobtn"/></form></div>
+<div id="Instructions"> To use this website, visit your profile's url. If you have set the vanity url enter the last text after "id/"
+	Otherwise enter the numbers in your url. These numbers are your steam id.
+
+	If necessary, please go to the steam settings and under "Interface," check
+	"Display Steam URL address bar when available."
+</div>
+
+
+</div>
 </body>
 </html>
